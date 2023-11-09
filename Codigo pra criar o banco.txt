@@ -6,12 +6,12 @@ create database academia
 use academia
 
 create table cadastro
-( cli_id int primary key auto_increment,
-cli_nome tinytext,
-cli_cpf bigint,
-cli_data_nascimento date,
-cli_peso float,
-cli_altura float
+( alu_id int primary key auto_increment,
+alu_nome tinytext,
+alu_cpf bigint,
+alu_data_nascimento date,
+alu_peso float,
+alu_altura float
 );
 
 select * from cadastro

@@ -8,7 +8,7 @@ package model;
  *
  * @author Manhã
  */
-public class Cliente {
+public class Aluno {
     
     private String nome;
     private int cpf;
@@ -16,7 +16,7 @@ public class Cliente {
     private float peso;
     private float altura;
 
-    public Cliente(String nome, int cpf, Data dataNascimento, float peso, float altura) {
+    public Aluno(String nome, int cpf, Data dataNascimento, float peso, float altura) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;

@@ -8,30 +8,30 @@ import academia.ConnectionAcademia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import model.Cliente;
+import model.Aluno;
 
 /**
  *
  * @author Manhã
  */
-public class ClienteDAO {
+public class AlunoDAO {
     
     private Connection connection;
    
-    public ClienteDAO(){ 
+    public AlunoDAO(){ 
         this.connection = new ConnectionAcademia().getConnection();
     } 
     
-    public void adiciona(Cliente cliente){ 
-        String sql = "INSERT INTO cadastro(cli_nome, cli_cpf, cli_data_nascimento, cli_peso, cli_altura) VALUE(?,?,?,?,?)";
+    public void adiciona(Aluno aluno){ 
+        String sql = "INSERT INTO cadastro(alu_nome, alu_cpf, alu_data_nascimento, alu_peso, alu_altura) VALUE(?,?,?,?,?)";
         try { 
             PreparedStatement stmt = connection.prepareStatement(sql);
            // String id_aux=Integer.toString(cliente.getId());
-            stmt.setString(1, cliente.getNome());
-            stmt.setInt(2, cliente.getCpf());
-            stmt.setString(3, cliente.get);
-            stmt.setString(4, cliente.getNome());
-            stmt.setString(5, cliente.getNome());
+            stmt.setString(1, aluno.getNome());
+            stmt.setInt(2, aluno.getCpf());
+            stmt.setString(3, aluno.getDataSQL());
+            stmt.setFloat(4, aluno.getPeso());
+            stmt.setFloat(5, aluno.getAltura());
             stmt.execute();
             stmt.close();
         } 
