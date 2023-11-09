@@ -49,7 +49,7 @@ public class Data {
     }
     
     public String retornaData(){
-        return dia + "/" + mes + "/" + ano;
+        return ano + "-" + mes + "-" + dia;   //Isso e pra colocar no banco
     }
     
 }

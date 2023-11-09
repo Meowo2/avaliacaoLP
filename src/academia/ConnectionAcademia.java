@@ -4,10 +4,24 @@
  */
 package academia;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  *
  * @author Manhã
  */
 public class ConnectionAcademia {
+ 
+    public Connection getConnection() {
+    
+                 try {
+			return DriverManager.getConnection("jdbc:mysql://localhost:3306/academia","root","fatec");
+		 }         
+		 catch(SQLException excecao) {
+			throw new RuntimeException(excecao);
+		 }
+     }
     
 }

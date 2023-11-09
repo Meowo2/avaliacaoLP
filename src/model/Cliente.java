@@ -64,6 +64,8 @@ public class Cliente {
         this.altura = altura;
     }
     
-    
+    public String getDataSQL(){
+        return dataNascimento.retornaData();
+    }
     
 }
