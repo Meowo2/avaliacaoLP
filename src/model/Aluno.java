@@ -11,12 +11,12 @@ package model;
 public class Aluno {
     
     private String nome;
-    private int cpf;
+    private String cpf;
     private Data dataNascimento;
-    private float peso;
-    private float altura;
+    private double peso;
+    private double altura;
 
-    public Aluno(String nome, int cpf, Data dataNascimento, float peso, float altura) {
+    public Aluno(String nome, String cpf, Data dataNascimento, double peso, double altura) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -32,11 +32,11 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -48,7 +48,7 @@ public class Aluno {
         this.dataNascimento = dataNascimento;
     }
 
-    public float getPeso() {
+    public double getPeso() {
         return peso;
     }
 
@@ -56,7 +56,7 @@ public class Aluno {
         this.peso = peso;
     }
 
-    public float getAltura() {
+    public double getAltura() {
         return altura;
     }
 

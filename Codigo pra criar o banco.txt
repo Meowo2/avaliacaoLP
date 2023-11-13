@@ -7,11 +7,12 @@ use academia
 
 create table cadastro
 ( alu_id int primary key auto_increment,
-alu_nome tinytext,
-alu_cpf bigint,
-alu_data_nascimento date,
-alu_peso float,
-alu_altura float
+alu_nome tinytext not null,
+alu_cpf varchar(11) not null,
+alu_data_nascimento date not null,
+alu_peso double noy null,
+alu_altura double not null,
+UNIQUE (alu_cpf)
 );
 
 select * from cadastro

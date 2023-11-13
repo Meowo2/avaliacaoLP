@@ -4,6 +4,12 @@
  */
 package gui;
 
+import dao.AlunoDAO;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import model.Aluno;
+import model.Data;
+
 /**
  *
  * @author JULIA
@@ -32,11 +38,16 @@ public class Tela extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        
+        
+        
+        jTextField1 = new javax.swing.JTextField();  //Nascimento
+        jTextField2 = new javax.swing.JTextField();  //Nome
+        jTextField3 = new javax.swing.JTextField();  //CPF
+        jTextField4 = new javax.swing.JTextField();  //Altura
+        jTextField5 = new javax.swing.JTextField();  //Peso
+        
+        
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -169,10 +180,33 @@ public class Tela extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
+        
     }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
+        jTextField1.getText(); //nascimento
+        jTextField2.getText(); //Nome
+        jTextField3.getText(); //CPF
+        jTextField4.getText(); //Altura
+        jTextField5.getText(); //Peso
+        
+        Data dat1 = new Data(Integer.parseInt(jTextField1.getText().substring(0, 2)),  //dia
+                Integer.parseInt(jTextField1.getText().substring(2, 4)),    //mes
+                Integer.parseInt(jTextField1.getText().substring(4, 8)));   //ano
+        
+        Aluno aluno1 = new Aluno(
+                jTextField2.getText(), 
+                jTextField3.getText(), 
+                dat1,       
+                Double.parseDouble(jTextField5.getText()), 
+                Double.parseDouble(jTextField4.getText())
+        );
+        
+        AlunoDAO add = new AlunoDAO(); 
+        add.adicionaAluno(aluno1);
+        
+        JOptionPane.showConfirmDialog(null, "Aluno cadrastrado com sucesso!");
     }                                        
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {                                            
@@ -229,4 +263,8 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration                   
+
+    private Object createFormatter(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
