@@ -10,7 +10,7 @@ create table cadastro
 alu_nome tinytext not null,
 alu_cpf varchar(11) not null,
 alu_data_nascimento date not null,
-alu_peso double noy null,
+alu_peso double not null,
 alu_altura double not null,
 UNIQUE (alu_cpf)
 );
