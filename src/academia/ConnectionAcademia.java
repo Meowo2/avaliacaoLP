@@ -17,7 +17,7 @@ public class ConnectionAcademia {
     public Connection getConnection() {
     
                  try {
-			return DriverManager.getConnection("jdbc:mysql://localhost:3306/academia","root","fatec");
+			return DriverManager.getConnection("jdbc:mysql://localhost:3306/academia","root","ju070205");
 		 }         
 		 catch(SQLException excecao) {
 			throw new RuntimeException(excecao);
