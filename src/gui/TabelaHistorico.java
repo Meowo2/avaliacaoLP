@@ -85,7 +85,7 @@ public class TabelaHistorico extends javax.swing.JFrame {
 	    	}
 	    
 		public void gerarTabela(){
-		     colunas = new Object[]{"Data e hora", "Email", "Documento"};
+		     colunas = new Object[]{"Data e hora", "CPF"};
 		     itens = new Object[colunas.length];
 
 		     // modelo
