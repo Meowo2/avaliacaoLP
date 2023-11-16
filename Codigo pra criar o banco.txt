@@ -1,9 +1,8 @@
 Nome do Banco: academia
 
+create database academia;
 
-create database academia
-
-use academia
+use academia;
 
 create table cadastro
 ( alu_id int primary key auto_increment,
@@ -15,4 +14,13 @@ alu_altura double not null,
 UNIQUE (alu_cpf)
 );
 
-select * from cadastro
+create table historico
+(
+alu_id int,
+his_peso double not null,
+his_dataHora TIMESTAMP not null,
+FOREIGN KEY (alu_id) REFERENCES cadastro(alu_id)
+);
+
+select * from cadastro;
+select * from historico;

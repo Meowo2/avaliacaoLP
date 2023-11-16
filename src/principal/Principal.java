@@ -10,6 +10,10 @@ import java.sql.SQLException;
 import model.Aluno;
 import model.Data;
 import dao.AlunoDAO;
+import java.sql.PreparedStatement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,11 +31,13 @@ public class Principal {
         System.out.println("Conexão aberta!");
         connection.close();
         
-        Data dat1 = new Data(25, 07, 2004);
+        /*Data dat1 = new Data(25, 07, 2004);
         Aluno aluno1 = new Aluno("Arthur", "53101976804", dat1, 45.5, 1.75);
         
         AlunoDAO add = new AlunoDAO(); 
-        add.adicionaAluno(aluno1);
+        add.adicionaAluno(aluno1);*/
+        
+        
     }
     
 }
