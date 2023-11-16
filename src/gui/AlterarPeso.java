@@ -1,22 +1,31 @@
 package gui;
 
+import academia.ConnectionAcademia;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import model.Historico;
 
 
 public class AlterarPeso extends JFrame {
 
+    private String aluCpf;
     private JLabel jLabelTitle, jLabelNovoPeso; 
     private JTextField jTextNovoPeso;
     private JButton buttonSavePeso, buttonHistorico;
 
     
-    public AlterarPeso(){
+    public AlterarPeso(String cpf){
+        this.aluCpf = cpf;
+        
         setTitle("Alterar Peso");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,6 +49,33 @@ public class AlterarPeso extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
+                Connection connection = new ConnectionAcademia().getConnection();
+                Historico registrar = new Historico(aluCpf,Double.parseDouble(jTextNovoPeso.getText()));
+                
+                String sql = "INSERT INTO historico(alu_cpf, his_peso, his_dataHora) VALUE(?,?,?)";
+                String updateCadastro = "UPDATE cadastro SET alu_peso = ? WHERE alu_cpf = ?";
+                try { 
+                    PreparedStatement stmt = connection.prepareStatement(sql);
+
+                    stmt.setString(1, registrar.getAluCpf());
+                    stmt.setDouble(2, registrar.getPeso());
+                    stmt.setString(3, registrar.getDataHora());
+                    stmt.execute();
+                    stmt.close();
+                    
+                    PreparedStatement stmt2 = connection.prepareStatement(updateCadastro);
+                    stmt2.setDouble(1, registrar.getPeso());
+                    stmt2.setString(2, registrar.getAluCpf());
+                    stmt2.execute();
+                    stmt2.close();
+                    
+                    JOptionPane.showMessageDialog(null, "Peso alterado com sucesso!");
+                } 
+                catch (SQLException u) { 
+                    JOptionPane.showMessageDialog(null, "Não foi possível registrar dados no histórico");
+                    throw new RuntimeException(u);
+                }  
+                
             }
         });
         add(buttonSavePeso);
@@ -50,7 +86,7 @@ public class AlterarPeso extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                TabelaHistorico tabelaHistorico = new TabelaHistorico();
+               TabelaHistorico tabelaHistorico = new TabelaHistorico();
 
                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
 

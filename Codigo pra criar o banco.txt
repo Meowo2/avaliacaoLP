@@ -16,10 +16,10 @@ UNIQUE (alu_cpf)
 
 create table historico
 (
-alu_id int,
+alu_cpf varchar(11) not null,
 his_peso double not null,
 his_dataHora TIMESTAMP not null,
-FOREIGN KEY (alu_id) REFERENCES cadastro(alu_id)
+FOREIGN KEY (alu_cpf) REFERENCES cadastro(alu_cpf)
 );
 
 select * from cadastro;

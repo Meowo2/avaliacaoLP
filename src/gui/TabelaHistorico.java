@@ -94,10 +94,10 @@ public class TabelaHistorico extends javax.swing.JFrame {
 			for (Historico dado : dados) {
 				
 		        //data e hora na primeira coluna
-	             itens[0] = dado.getDataEHora();
+	             itens[0] = dado.getDataHora();
 	            
 	             // cpf na segunda coluna
-	             itens[1] = dado.getCpf();
+	             itens[1] = dado.getAluId();
 	             defalultTableModel.addRow(itens);
 	        }
 

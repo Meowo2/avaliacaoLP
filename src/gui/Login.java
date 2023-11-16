@@ -1,11 +1,13 @@
 package gui;
 
+import dao.AlunoDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
@@ -13,7 +15,7 @@ public class Login extends JFrame {
 
     private JLabel jLabelTitle, jLabelCPF; 
     private JTextField jTextCPF;
-    private JButton buttonUpdatePeso;
+    private JButton buttonLogar, buttonCadastrar;
     
     public Login(){
         setTitle("Login");
@@ -33,21 +35,42 @@ public class Login extends JFrame {
         jTextCPF.setBounds(150, 80, 100, 20);
         add(jTextCPF);
 
-        buttonUpdatePeso = new JButton("Entrar");
-        buttonUpdatePeso.setBounds(130, 150, 120, 30);
+        buttonLogar = new JButton("Entrar");
+        buttonLogar.setBounds(130, 150, 120, 30);
+        
+        buttonCadastrar = new JButton("Cadastrar");
+        buttonCadastrar.setBounds(130, 200, 120, 30);
 
-        buttonUpdatePeso.addActionListener(new ActionListener() {
+        buttonLogar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               //condição de autenticação
+                AlunoDAO aluno = new AlunoDAO();
+                
+                if (aluno.cpfExiste(jTextCPF.getText())) {
+                    dispose();
+                    new AlterarPeso(jTextCPF.getText());
+                }else{      
+                JOptionPane.showMessageDialog(null, "CPF não cadastrado");
+                }
+                 throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                }
+        });
+        
+        buttonCadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                //condição de autenticação
                        
-                AlterarPeso alterarPeso = new AlterarPeso();
+                dispose();
+                new Tela();
        
                  throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
                 }
         });
-        add(buttonUpdatePeso);
-
+        
+        add(buttonLogar);
+        add(buttonCadastrar);
         setVisible(true);
 
     }

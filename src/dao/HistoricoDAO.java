@@ -15,11 +15,11 @@ public class HistoricoDAO {
     } 
     
     public void adicionaHistorico(Historico historico){ 
-        String sql = "INSERT INTO historico(alu_id, his_peso, his_dataHora) VALUE(?,?,?)";
+        String sql = "INSERT INTO historico(alu_cpf, his_peso, his_dataHora) VALUE(?,?,?)";
         try { 
             PreparedStatement stmt = connection.prepareStatement(sql);
             
-            //stmt.setString(1, aluno.getNome());
+            stmt.setString(1, historico.getAluCpf());
             stmt.setDouble(2, historico.getPeso());
             stmt.setString(3, historico.getDataHora());
             stmt.execute();

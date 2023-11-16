@@ -8,6 +8,11 @@ import academia.ConnectionAcademia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Aluno;
 
@@ -39,8 +44,27 @@ public class AlunoDAO {
         catch (SQLException u) { 
             JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o Aluno");
             throw new RuntimeException(u);
-        } 
+        }         
         
     } 
+    
+    public boolean cpfExiste(String cpf){
+        String sql = "SELECT * FROM cadastro WHERE alu_cpf = ?";
+        try { 
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            
+            stmt.setString(1, cpf);
+            stmt.execute();
+            //stmt.close();
+            ResultSet resultSet = stmt.getResultSet();
+            
+            return resultSet.next();
+        } 
+        catch (SQLException u) { 
+            JOptionPane.showMessageDialog(null, "CPF não cadastrado");
+            return false;
+            //throw new RuntimeException(u);
+        } 
+    }
     
 }

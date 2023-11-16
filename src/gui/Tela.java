@@ -71,8 +71,8 @@ public class Tela extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                //condição de autenticação
-                       
-                Login login = new Login();
+                dispose();
+                new Login();
        
                  throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
                 }
@@ -106,6 +106,8 @@ public class Tela extends JFrame {
             add.adicionaAluno(aluno1);
                                           
                 JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
+                dispose();
+                new Login();
             }
         });
         add(buttonSubmit);
@@ -113,7 +115,7 @@ public class Tela extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Tela());
-    }
+    }*/
 }

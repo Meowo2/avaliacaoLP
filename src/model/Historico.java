@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Historico {
-    private int aluId;
+    private String aluCpf;
     private double peso;
     private String dataHora;
 
@@ -14,18 +14,18 @@ public class Historico {
     DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
     String horaFormatada = formatterHora.format(LocalDateTime.now());   //formata hora atual
     
-    public Historico(int aluId, double peso) {
-        this.aluId = aluId;
+    public Historico(String aluCpf, double peso) {
+        this.aluCpf = aluCpf;
         this.peso = peso;
         this.dataHora = dataFormatada + " " + horaFormatada;
     }
 
-    public int getAluId() {
-        return aluId;
+    public String getAluCpf() {
+        return aluCpf;
     }
 
-    public void setAluId(int aluId) {
-        this.aluId = aluId;
+    public void setAluId(String aluCpf) {
+        this.aluCpf = aluCpf;
     }
 
     public double getPeso() {
