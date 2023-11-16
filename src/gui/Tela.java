@@ -12,13 +12,13 @@ public class Tela extends JFrame {
 
     private JLabel labelTitle, labelName, labelDataNascimento, labelCPF, labelPeso, labelAltura;
     private JTextField textFieldName, textFieldDataNascimento, textFieldCPF, textFieldPeso, textFieldAltura;
-    private JButton buttonUpdatePeso, buttonSubmit;
+    private JButton buttonLogin, buttonSubmit;
 
     public Tela() {
         setTitle("Registro");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null); // Using absolute positioning (not recommended for complex layouts)
+        setLayout(null);
 
         labelTitle = new JLabel("Registro");
         labelTitle.setBounds(150, 10, 100, 30);
@@ -63,14 +63,24 @@ public class Tela extends JFrame {
         textFieldAltura = new JTextField();
         textFieldAltura.setBounds(120, 170, 200, 20);
         add(textFieldAltura);
-        
-        buttonUpdatePeso = new JButton("Alterar Peso");
-        buttonUpdatePeso.setBounds(50, 220, 120, 30);
-        add(buttonUpdatePeso);
+
+        buttonLogin = new JButton("Login");
+        buttonLogin.setBounds(30, 220, 120, 30);
+
+        buttonLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               //condição de autenticação
+                       
+                Login login = new Login();
+       
+                 throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                }
+        });
+        add(buttonLogin);
 
         buttonSubmit = new JButton("Enviar dados");
         buttonSubmit.setBounds(200, 220, 120, 30);
-
         buttonSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -89,7 +99,7 @@ public class Tela extends JFrame {
                     textFieldCPF.getText(), 
                     dat1,       
                     Double.parseDouble(textFieldPeso.getText()), 
-                    Double.parseDouble(textFieldPeso.getText())
+                    Double.parseDouble(textFieldAltura.getText())
             );
             
             AlunoDAO add = new AlunoDAO(); 
