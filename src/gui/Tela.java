@@ -105,7 +105,7 @@ public class Tela extends JFrame {
             AlunoDAO add = new AlunoDAO(); 
             add.adicionaAluno(aluno1);
                                           
-                JOptionPane.showConfirmDialog(null, "Aluno cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
             }
         });
         add(buttonSubmit);

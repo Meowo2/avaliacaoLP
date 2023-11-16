@@ -37,7 +37,7 @@ public class AlunoDAO {
             stmt.close();
         } 
         catch (SQLException u) { 
-            JOptionPane.showConfirmDialog(null, "Não foi possível cadastrar o Aluno");
+            JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o Aluno");
             throw new RuntimeException(u);
         } 
         
