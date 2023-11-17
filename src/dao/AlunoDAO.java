@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Aluno;
+import model.Historico;
 
 /**
  *
@@ -30,6 +31,10 @@ public class AlunoDAO {
     
     public void adicionaAluno(Aluno aluno){ 
         String sql = "INSERT INTO cadastro(alu_nome, alu_cpf, alu_data_nascimento, alu_peso, alu_altura) VALUE(?,?,?,?,?)";
+        String sql2 = "INSERT INTO historico(alu_cpf, his_peso, his_dataHora) VALUE(?, ?, ?)";
+        
+        Historico his = new Historico(aluno.getCpf(), aluno.getPeso());
+        
         try { 
             PreparedStatement stmt = connection.prepareStatement(sql);
             
@@ -40,6 +45,15 @@ public class AlunoDAO {
             stmt.setDouble(5, aluno.getAltura());
             stmt.execute();
             stmt.close();
+            
+            PreparedStatement stmt2 = connection.prepareStatement(sql);
+            
+            stmt2.setString(1, his.getAluCpf());
+            stmt2.setDouble(2, his.getPeso());
+            stmt2.setString(3, his.getDataHora());
+            stmt2.execute();
+            stmt2.close();
+            
         } 
         catch (SQLException u) { 
             JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o Aluno");
@@ -55,7 +69,7 @@ public class AlunoDAO {
             
             stmt.setString(1, cpf);
             stmt.execute();
-            //stmt.close();
+            stmt.close();
             ResultSet resultSet = stmt.getResultSet();
             
             return resultSet.next();

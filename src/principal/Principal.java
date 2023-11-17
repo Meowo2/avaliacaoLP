@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import model.Aluno;
 import model.Data;
 import dao.AlunoDAO;
+import gui.AlterarPeso;
 import gui.Login;
 import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
@@ -38,7 +39,9 @@ public class Principal {
         AlunoDAO add = new AlunoDAO(); 
         add.adicionaAluno(aluno1);*/
         
-        new Login();
+        //new Login();
+        
+        new AlterarPeso("53101976804");
         
         
     }

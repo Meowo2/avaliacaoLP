@@ -3,11 +3,19 @@ package gui;
 import academia.ConnectionAcademia;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,7 +28,7 @@ public class AlterarPeso extends JFrame {
     private String aluCpf;
     private JLabel jLabelTitle, jLabelNovoPeso; 
     private JTextField jTextNovoPeso;
-    private JButton buttonSavePeso, buttonHistorico;
+    private JButton buttonSavePeso, buttonHistorico, bottonCalcularImc;
 
     
     public AlterarPeso(String cpf){
@@ -81,7 +89,7 @@ public class AlterarPeso extends JFrame {
         add(buttonSavePeso);
 
         buttonHistorico = new JButton("Ver Histórico");
-        buttonHistorico.setBounds(130, 200, 120, 30);
+        buttonHistorico.setBounds(200, 200, 120, 30);
         buttonHistorico.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -94,6 +102,43 @@ public class AlterarPeso extends JFrame {
             }
         });
         add(buttonHistorico);
+        
+        
+        bottonCalcularImc = new JButton("Calcular IMC");
+        bottonCalcularImc.setBounds(60, 200, 120, 30);
+        bottonCalcularImc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser explorador_arq = new JFileChooser();
+                //int resposta = explorador_arq.showOpenDialog(null);
+                explorador_arq.setCurrentDirectory(new java.io.File("."));
+                explorador_arq.setDialogTitle("Selecione Diretório");
+                explorador_arq.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                explorador_arq.setAcceptAllFileFilterUsed(false);
+                
+                if(explorador_arq.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+                    File arquivoImc = new File(explorador_arq.getSelectedFile() + "\\CalculoIMC.txt");
+                    
+
+                    FileWriter fw;
+                    try {
+                        fw = new FileWriter(arquivoImc, true);
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        bw.write("\n"+"Testeeeeeeeeeeeeeeee3");
+                        bw.close();
+                        //PrintWriter out = new PrintWriter(bw);
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(AlterarPeso.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    
+                    
+                    
+                }
+            }
+        });
+        add(bottonCalcularImc);
 
         setVisible(true);
 
