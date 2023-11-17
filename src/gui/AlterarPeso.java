@@ -1,6 +1,7 @@
 package gui;
 
 import academia.ConnectionAcademia;
+import com.mysql.cj.xdevapi.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -8,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -109,6 +111,27 @@ public class AlterarPeso extends JFrame {
         bottonCalcularImc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                /*
+                Connection connection = new ConnectionAcademia().getConnection();
+                ResultSet rs;
+                try {
+                    rs = connection.prepareStatement("SELECT alu_peso, alu_data_nascimento FROM cadastro WHERE alu_cpf = "+ cpf).executeQuery();
+
+                    rs.next();
+                    Double peso = rs.getDouble(1);
+                    String dataNascimento = rs.getString(2);
+                    System.out.println(dataNascimento);
+                    int ano = (dataNascimento.substring(0,4));
+                    
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(AlterarPeso.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                */
+                
+                
+                
                 JFileChooser explorador_arq = new JFileChooser();
                 //int resposta = explorador_arq.showOpenDialog(null);
                 explorador_arq.setCurrentDirectory(new java.io.File("."));
@@ -124,22 +147,22 @@ public class AlterarPeso extends JFrame {
                     try {
                         fw = new FileWriter(arquivoImc, true);
                         BufferedWriter bw = new BufferedWriter(fw);
-                        bw.write("\n"+"Testeeeeeeeeeeeeeeee3");
+                        //bw.write("\n"+"O Seu IMC(índice de massa corporal) com base na sua idade("+ idade +") e seu ultimo registro de peso("+ peso +"kg) esta em: "+ imc +"("+ interpretacao +"), Calculado em "+ dataHora );
                         bw.close();
                         //PrintWriter out = new PrintWriter(bw);
                         
                     } catch (IOException ex) {
                         Logger.getLogger(AlterarPeso.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    
-                    
-                    
-                    
+                    }  
                 }
             }
         });
         add(bottonCalcularImc);
+        
+        
+        
 
+        
         setVisible(true);
 
     }
