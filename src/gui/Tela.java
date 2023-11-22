@@ -99,15 +99,14 @@ public class Tela extends JFrame {
                     textFieldCPF.getText(), 
                     dat1,       
                     Double.parseDouble(textFieldPeso.getText()), 
-                    Double.parseDouble(textFieldAltura.getText())
-            );
+                    Double.parseDouble(textFieldAltura.getText()));
             
-            AlunoDAO add = new AlunoDAO(); 
-            add.adicionaAluno(aluno1);
-                                          
-                JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
-                dispose();
-                new Login();
+                    AlunoDAO add = new AlunoDAO(); 
+                    add.adicionaAluno(aluno1);
+
+                    JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
+                    dispose();
+                    new Login();
             }
         });
         add(buttonSubmit);

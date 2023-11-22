@@ -33,7 +33,11 @@ public class AlunoDAO {
         String sql = "INSERT INTO cadastro(alu_nome, alu_cpf, alu_data_nascimento, alu_peso, alu_altura) VALUE(?,?,?,?,?)";
         String sql2 = "INSERT INTO historico(alu_cpf, his_peso, his_dataHora) VALUE(?, ?, ?)";
         
-        Historico his = new Historico(aluno.getCpf(), aluno.getPeso());
+        DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+        String dataFormatada = formatterData.format(LocalDateTime.now());  //formata data atual
+
+        DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String horaFormatada = formatterHora.format(LocalDateTime.now());   //formata hora atual
         
         try { 
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -46,11 +50,11 @@ public class AlunoDAO {
             stmt.execute();
             stmt.close();
             
-            PreparedStatement stmt2 = connection.prepareStatement(sql);
+            PreparedStatement stmt2 = connection.prepareStatement(sql2);
             
-            stmt2.setString(1, his.getAluCpf());
-            stmt2.setDouble(2, his.getPeso());
-            stmt2.setString(3, his.getDataHora());
+            stmt2.setString(1, aluno.getCpf());
+            stmt2.setDouble(2, aluno.getPeso());
+            stmt2.setString(3, dataFormatada + " " + horaFormatada);
             stmt2.execute();
             stmt2.close();
             
