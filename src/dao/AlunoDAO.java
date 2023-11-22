@@ -67,22 +67,65 @@ public class AlunoDAO {
     } 
     
     public boolean cpfExiste(String cpf){
-        String sql = "SELECT * FROM cadastro WHERE alu_cpf = ?";
+        ResultSet rs;
         try { 
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            rs = connection.prepareStatement("SELECT * FROM cadastro WHERE alu_cpf = "+ cpf).executeQuery();
             
-            stmt.setString(1, cpf);
-            stmt.execute();
-            stmt.close();
-            ResultSet resultSet = stmt.getResultSet();
-            
-            return resultSet.next();
+            return rs.next();
         } 
         catch (SQLException u) { 
             JOptionPane.showMessageDialog(null, "CPF não cadastrado");
             return false;
             //throw new RuntimeException(u);
         } 
+    }
+    
+    public void excluirAluno(Aluno aluno){
+        String sql = "DELETE FROM historico WHERE alu_cpf = ?";
+        String sql2 = "DELETE FROM cadastro WHERE alu_cpf = ?;";
+        
+        try { 
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            
+            stmt.setString(1, aluno.getCpf());
+            stmt.execute();
+            stmt.close();
+            
+            PreparedStatement stmt2 = connection.prepareStatement(sql2);
+            
+            stmt2.setString(1, aluno.getCpf());
+            stmt2.execute();
+            stmt2.close();
+            
+        } 
+        catch (SQLException u) { 
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir cadastro do Aluno");
+            throw new RuntimeException(u);
+        }         
+    }
+    
+    public void excluirAlunoPorCopf(String cpfExcluir){
+        String sql = "DELETE FROM historico WHERE alu_cpf = ?";
+        String sql2 = "DELETE FROM cadastro WHERE alu_cpf = ?;";
+        
+        try { 
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            
+            stmt.setString(1, cpfExcluir);
+            stmt.execute();
+            stmt.close();
+            
+            PreparedStatement stmt2 = connection.prepareStatement(sql2);
+            
+            stmt2.setString(1, cpfExcluir);
+            stmt2.execute();
+            stmt2.close();
+            
+        } 
+        catch (SQLException u) { 
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir cadastro do Aluno");
+            throw new RuntimeException(u);
+        }         
     }
     
 }

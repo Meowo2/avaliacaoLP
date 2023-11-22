@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,7 +32,7 @@ public class AlterarPeso extends JFrame {
     private String aluCpf;
     private JLabel jLabelTitle, jLabelNovoPeso; 
     private JTextField jTextNovoPeso;
-    private JButton buttonSavePeso, buttonHistorico, bottonCalcularImc;
+    private JButton buttonSavePeso, buttonHistorico, bottonCalcularImc, bottonExcluir;
 
     
     public AlterarPeso(String cpf){
@@ -53,6 +55,8 @@ public class AlterarPeso extends JFrame {
         jTextNovoPeso.setBounds(90, 100, 200, 20);
         add(jTextNovoPeso);
 
+        //bottonExcluir
+        
         buttonSavePeso = new JButton("Salvar");
         buttonSavePeso.setBounds(130, 150, 120, 30);
         buttonSavePeso.addActionListener(new ActionListener() {
@@ -112,24 +116,59 @@ public class AlterarPeso extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                /*
+                DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd-MM-uuuu");
+                String dataFormatada = formatterData.format(LocalDateTime.now());  //formata data atual
+                DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+                String horaFormatada = formatterHora.format(LocalDateTime.now());   //formata hora atual
+                
+                
+                DateTimeFormatter formatterYear = DateTimeFormatter.ofPattern("uuuu");
+                String anoAtualString = formatterYear.format(LocalDateTime.now());  //formata ano
+                
+                int anoAtual = Integer.parseInt(anoAtualString); 
+                Double peso = 0.0;
+                Double altura = 0.0;
+                int ano = 0000;
+                String interpretacao;
+                
                 Connection connection = new ConnectionAcademia().getConnection();
                 ResultSet rs;
                 try {
-                    rs = connection.prepareStatement("SELECT alu_peso, alu_data_nascimento FROM cadastro WHERE alu_cpf = "+ cpf).executeQuery();
+                    rs = connection.prepareStatement("SELECT alu_peso, alu_data_nascimento, alu_altura FROM cadastro WHERE alu_cpf = "+ cpf).executeQuery();
 
                     rs.next();
-                    Double peso = rs.getDouble(1);
+                    peso = rs.getDouble(1);
                     String dataNascimento = rs.getString(2);
-                    System.out.println(dataNascimento);
-                    int ano = (dataNascimento.substring(0,4));
+                    altura = rs.getDouble(3);
+                    //System.out.println(dataNascimento);
+                    ano = Integer.parseInt(dataNascimento.substring(0,4));
                     
 
                 } catch (SQLException ex) {
                     Logger.getLogger(AlterarPeso.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                */
                 
+                int idade = anoAtual - ano;
+                Double imc = peso/Math.pow((altura/100),2);
+
+                //O switch não suporta conparaçoes
+                if(imc<16){
+                    interpretacao = "Magreza Grau 3";
+                }else if(imc<=16.9){
+                    interpretacao = "Magreza Grau 2";
+                }else if(imc<=18.4){
+                    interpretacao = "Magreza Grau 1";
+                }else if(imc<=24.9){
+                    interpretacao = "Eutrofia";
+                }else if(imc<=29.9){
+                    interpretacao = "Pré-Obesidade";
+                }else if(imc<=34.9){
+                    interpretacao = "Obesidade Grau 1";
+                }else if(imc<=39.9){
+                    interpretacao = "Obesidade Grau 2";
+                }else{
+                    interpretacao = "Obesidade Grau 3";
+                }
                 
                 
                 JFileChooser explorador_arq = new JFileChooser();
@@ -147,9 +186,9 @@ public class AlterarPeso extends JFrame {
                     try {
                         fw = new FileWriter(arquivoImc, true);
                         BufferedWriter bw = new BufferedWriter(fw);
-                        //bw.write("\n"+"O Seu IMC(índice de massa corporal) com base na sua idade("+ idade +") e seu ultimo registro de peso("+ peso +"kg) esta em: "+ imc +"("+ interpretacao +"), Calculado em "+ dataHora );
+                        bw.write("\n"+"O Seu IMC(índice de massa corporal) com base na sua idade("+ idade +") e seu ultimo registro de peso("+ peso +"kg) esta em: "+ imc +"("+ interpretacao +"), Calculado em "+ dataFormatada + " " + horaFormatada );
                         bw.close();
-                        //PrintWriter out = new PrintWriter(bw);
+                        PrintWriter out = new PrintWriter(bw);
                         
                     } catch (IOException ex) {
                         Logger.getLogger(AlterarPeso.class.getName()).log(Level.SEVERE, null, ex);

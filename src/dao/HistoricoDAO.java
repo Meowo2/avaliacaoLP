@@ -31,4 +31,23 @@ public class HistoricoDAO {
         } 
         
     }
+    
+    /*
+    public void excluirHistoricoPorCpf(String cpf){
+        String sql = "DELETE FROM historico WHERE alu_cpf = ?";
+        
+        try { 
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            
+            stmt.setString(1, cpf);
+            stmt.execute();
+            stmt.close();
+            
+        } 
+        catch (SQLException u) { 
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir cadastro do Aluno");
+            throw new RuntimeException(u);
+        }         
+    }
+    */
 }
