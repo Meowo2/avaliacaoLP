@@ -56,38 +56,4 @@ public class HistoricoDAO {
         }         
     }
     
-    public String consultarHistoricoPorCpf(String cpf) {
-        ResultSet rs;
-        try {
-            String query = "SELECT * FROM historico WHERE alu_cpf = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-                pstmt.setString(1, cpf);
-                rs = pstmt.executeQuery();
-    
-                StringBuilder historico = new StringBuilder();
-    
-                while (rs.next()) {
-                    String id = Integer.toString(rs.getInt("alu_id"));
-                    String peso = Double.toString(rs.getDouble("his_peso"));
-                    Timestamp dataHoraTimestamp = rs.getTimestamp("his_dataHora");
-    
-                    // Formatando Timestamp para uma String
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    String dataHora = dateFormat.format(dataHoraTimestamp);
-    
-                    historico.append("Id: ").append(id).append("\n")
-                            .append("Peso: ").append(peso).append("Kg").append("\n")
-                            .append("Data e Hora: ").append(dataHora).append("\n\n");
-                }
-    
-                return historico.toString();
-            }
-        } catch (SQLException u) {
-            JOptionPane.showMessageDialog(null, "Não foi possível concluir a consulta");
-            return "";
-        }
-    }
-    
-    
-    
 }

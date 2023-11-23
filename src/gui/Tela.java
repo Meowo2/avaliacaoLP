@@ -70,7 +70,6 @@ public class Tela extends JFrame {
         buttonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               //condição de autenticação
                 dispose();
                 new Login();
        

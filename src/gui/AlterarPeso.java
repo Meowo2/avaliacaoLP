@@ -4,7 +4,6 @@ import academia.ConnectionAcademia;
 import com.mysql.cj.xdevapi.Statement;
 import dao.AlunoDAO;
 import dao.HistoricoDAO;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -103,11 +102,9 @@ public class AlterarPeso extends JFrame {
         buttonHistorico.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                HistoricoDAO dao = new HistoricoDAO();
-                JOptionPane.showMessageDialog(null, dao.consultarHistoricoPorCpf(cpf));
-                
-               throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                dispose();
+                new HistoricoPesoTable();
+                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
 
             }
         });
@@ -241,4 +238,5 @@ public class AlterarPeso extends JFrame {
         setVisible(true);
 
     }
+
 }
