@@ -3,6 +3,8 @@ package gui;
 import academia.ConnectionAcademia;
 import com.mysql.cj.xdevapi.Statement;
 import dao.AlunoDAO;
+import dao.HistoricoDAO;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -102,10 +104,10 @@ public class AlterarPeso extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-               TabelaHistorico tabelaHistorico = new TabelaHistorico();
-
+                HistoricoDAO dao = new HistoricoDAO();
+                JOptionPane.showMessageDialog(null, dao.consultarHistoricoPorCpf(cpf));
+                
                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-
 
             }
         });
@@ -181,7 +183,7 @@ public class AlterarPeso extends JFrame {
                 }
                 
                 int idade = anoAtual - ano;
-                Double imc = peso/Math.pow((altura/100),2);
+                Double imc = peso/Math.pow((altura),2);
 
                 //O switch não suporta conparaçoes
                 if(imc<16){
