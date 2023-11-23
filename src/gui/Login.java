@@ -18,6 +18,8 @@ public class Login extends JFrame {
     private JButton buttonLogar, buttonCadastrar;
     
     public Login(){
+        
+        setLocationRelativeTo(null);
         setTitle("Login");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

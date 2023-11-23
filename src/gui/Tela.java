@@ -15,6 +15,8 @@ public class Tela extends JFrame {
     private JButton buttonLogin, buttonSubmit;
 
     public Tela() {
+        
+        setLocationRelativeTo(null);
         setTitle("Registro");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
