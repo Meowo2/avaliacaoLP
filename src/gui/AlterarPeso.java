@@ -35,12 +35,13 @@ public class AlterarPeso extends JFrame {
     private String aluCpf;
     private JLabel jLabelTitle, jLabelNovoPeso; 
     private JTextField jTextNovoPeso;
-    private JButton buttonSavePeso, buttonHistorico, bottonCalcularImc, bottonExcluir, bottonConsultar;
+    private JButton buttonSavePeso, buttonHistorico, bottonCalcularImc, bottonExcluir, bottonConsultar, bottonVoltar;
 
     
     public AlterarPeso(String cpf){
         this.aluCpf = cpf;
         
+        setLocationRelativeTo(null);
         setTitle("Alterar Peso");
         setSize(400, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,6 +59,17 @@ public class AlterarPeso extends JFrame {
         jTextNovoPeso.setBounds(90, 100, 200, 20);
         add(jTextNovoPeso);
 
+        
+        bottonVoltar = new JButton("Voltar");
+        bottonVoltar.setBounds(10, 10, 70, 30);
+        bottonVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                
+            }
+        });
+        add(bottonVoltar);
         
         buttonSavePeso = new JButton("Salvar");
         buttonSavePeso.setBounds(130, 150, 120, 30);
