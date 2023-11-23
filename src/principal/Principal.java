@@ -39,9 +39,9 @@ public class Principal {
         AlunoDAO add = new AlunoDAO(); 
         add.adicionaAluno(aluno1);*/
         
-        new Login();
+        //new Login();
         
-        //new AlterarPeso("53101976804");
+        new AlterarPeso("53101976804");
         
         
     }

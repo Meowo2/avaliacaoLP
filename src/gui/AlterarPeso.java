@@ -2,6 +2,7 @@ package gui;
 
 import academia.ConnectionAcademia;
 import com.mysql.cj.xdevapi.Statement;
+import dao.AlunoDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -24,6 +25,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import model.Aluno;
+import model.Data;
 import model.Historico;
 
 
@@ -32,14 +35,14 @@ public class AlterarPeso extends JFrame {
     private String aluCpf;
     private JLabel jLabelTitle, jLabelNovoPeso; 
     private JTextField jTextNovoPeso;
-    private JButton buttonSavePeso, buttonHistorico, bottonCalcularImc, bottonExcluir;
+    private JButton buttonSavePeso, buttonHistorico, bottonCalcularImc, bottonExcluir, bottonExcluirHistorico;
 
     
     public AlterarPeso(String cpf){
         this.aluCpf = cpf;
         
         setTitle("Alterar Peso");
-        setSize(400, 300);
+        setSize(400, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null); 
 
@@ -55,7 +58,6 @@ public class AlterarPeso extends JFrame {
         jTextNovoPeso.setBounds(90, 100, 200, 20);
         add(jTextNovoPeso);
 
-        //bottonExcluir
         
         buttonSavePeso = new JButton("Salvar");
         buttonSavePeso.setBounds(130, 150, 120, 30);
@@ -108,6 +110,34 @@ public class AlterarPeso extends JFrame {
             }
         });
         add(buttonHistorico);
+        
+        
+        bottonExcluir = new JButton("Excluir cadastro");
+        bottonExcluir.setBounds(35, 250, 150, 30);
+        bottonExcluir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                AlunoDAO dao = new AlunoDAO();
+                dao.excluirAlunoPorCpf(cpf);
+                JOptionPane.showMessageDialog(null, "Aluno excluido com sucesso!");
+                dispose();
+                new Login();
+            }
+        });
+        add(bottonExcluir);
+        
+        
+        bottonExcluirHistorico = new JButton("Excluir Histórico");
+        bottonExcluirHistorico.setBounds(195, 250, 150, 30);
+        bottonExcluirHistorico.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                
+            }
+        });
+        add(bottonExcluirHistorico);
         
         
         bottonCalcularImc = new JButton("Calcular IMC");
@@ -186,7 +216,9 @@ public class AlterarPeso extends JFrame {
                     try {
                         fw = new FileWriter(arquivoImc, true);
                         BufferedWriter bw = new BufferedWriter(fw);
-                        bw.write("\n"+"O Seu IMC(índice de massa corporal) com base na sua idade("+ idade +") e seu ultimo registro de peso("+ peso +"kg) esta em: "+ imc +"("+ interpretacao +"), Calculado em "+ dataFormatada + " " + horaFormatada );
+                        bw.write("\n"+"\n"+"O Seu IMC(índice de massa corporal) com base na sua idade("+ idade +") "
+                                + "e seu ultimo registro de peso("+ peso +"kg) esta em: "+ Double.toString(imc).substring(0,4) +"("+ interpretacao +")"
+                                + ", Calculado em "+ dataFormatada + " " + horaFormatada );
                         bw.close();
                         PrintWriter out = new PrintWriter(bw);
                         

@@ -104,7 +104,7 @@ public class AlunoDAO {
         }         
     }
     
-    public void excluirAlunoPorCopf(String cpfExcluir){
+    public void excluirAlunoPorCpf(String cpfExcluir){
         String sql = "DELETE FROM historico WHERE alu_cpf = ?";
         String sql2 = "DELETE FROM cadastro WHERE alu_cpf = ?;";
         
