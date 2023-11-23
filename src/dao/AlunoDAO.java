@@ -128,4 +128,30 @@ public class AlunoDAO {
         }         
     }
     
+    public String consultarPorCpf(String cpf){
+        ResultSet rs;
+        try { 
+            rs = connection.prepareStatement("SELECT * FROM cadastro WHERE alu_cpf = "+ cpf).executeQuery();
+            
+            rs.next();
+            String id = Integer.toString(rs.getInt(1));
+            String nome = rs.getString(2);
+            String cpfConsulta = rs.getString(3);
+            String nascimento = rs.getString(4);
+            String peso = Double.toString(rs.getDouble(5));
+            String altura = Double.toString(rs.getDouble(6));
+            
+            return "Id: " + id + "\n" +
+                   "Nome: " + nome + "\n" +
+                   "CPF: " + cpfConsulta + "\n" +
+                   "Data De Nascimento: " + nascimento.substring(8,10) + "/" + nascimento.substring(5,7) + "/" + nascimento.substring(0,4) + "\n" +
+                   "Peso: " + peso + "Kg" +"\n" +
+                   "Altura: " + altura + "m" + "\n";
+            
+        } 
+        catch (SQLException u) { 
+            JOptionPane.showMessageDialog(null, "Não foi possível concluir a consulta");
+            return "";
+        } 
+    }
 }

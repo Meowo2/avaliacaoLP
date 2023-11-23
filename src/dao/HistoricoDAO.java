@@ -32,9 +32,10 @@ public class HistoricoDAO {
         
     }
     
-    /*
+    
     public void excluirHistoricoPorCpf(String cpf){
         String sql = "DELETE FROM historico WHERE alu_cpf = ?";
+        String sql2 = "DELETE FROM historico WHERE alu_cpf = ?";
         
         try { 
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -43,11 +44,17 @@ public class HistoricoDAO {
             stmt.execute();
             stmt.close();
             
+            PreparedStatement stmt2 = connection.prepareStatement(sql2);
+            
+            stmt.setString(1, cpf);
+            stmt.execute();
+            stmt.close();
+            
         } 
         catch (SQLException u) { 
-            JOptionPane.showMessageDialog(null, "Não foi possível excluir cadastro do Aluno");
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir histórico do Aluno");
             throw new RuntimeException(u);
         }         
     }
-    */
+    
 }

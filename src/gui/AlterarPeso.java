@@ -35,7 +35,7 @@ public class AlterarPeso extends JFrame {
     private String aluCpf;
     private JLabel jLabelTitle, jLabelNovoPeso; 
     private JTextField jTextNovoPeso;
-    private JButton buttonSavePeso, buttonHistorico, bottonCalcularImc, bottonExcluir, bottonExcluirHistorico;
+    private JButton buttonSavePeso, buttonHistorico, bottonCalcularImc, bottonExcluir, bottonConsultar;
 
     
     public AlterarPeso(String cpf){
@@ -128,16 +128,18 @@ public class AlterarPeso extends JFrame {
         add(bottonExcluir);
         
         
-        bottonExcluirHistorico = new JButton("Excluir Histórico");
-        bottonExcluirHistorico.setBounds(195, 250, 150, 30);
-        bottonExcluirHistorico.addActionListener(new ActionListener() {
+        bottonConsultar = new JButton("Consultar Cadastro");
+        bottonConsultar.setBounds(195, 250, 150, 30);
+        bottonConsultar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
+                AlunoDAO dao = new AlunoDAO();
+                JOptionPane.showMessageDialog(null, dao.consultarPorCpf(cpf));
                 
             }
         });
-        add(bottonExcluirHistorico);
+        add(bottonConsultar);
         
         
         bottonCalcularImc = new JButton("Calcular IMC");
