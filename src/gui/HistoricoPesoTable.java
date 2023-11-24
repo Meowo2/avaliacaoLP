@@ -1,5 +1,6 @@
 package gui;
 
+import academia.ConnectionAcademia;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,7 +65,7 @@ public class HistoricoPesoTable extends JFrame {
         columnNames.add("Data e Hora");
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/academia","root","ju070205");
+            Connection connection = new ConnectionAcademia().getConnection();
 
             String query = "SELECT * FROM historico WHERE alu_cpf =" + cpf;
             try (PreparedStatement pstmt = connection.prepareStatement(query);
