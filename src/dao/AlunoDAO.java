@@ -11,11 +11,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Aluno;
-import model.Historico;
 
 /**
  *

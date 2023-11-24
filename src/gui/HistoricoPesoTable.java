@@ -16,15 +16,20 @@ public class HistoricoPesoTable extends JFrame {
     private JTable historicoTable;
     private JScrollPane scrollPane;
     private JButton jButtonVoltar;
+    private String cpf;
 
-    public HistoricoPesoTable() {
+    public HistoricoPesoTable(String cpf) {
         super("Histórico de Pesos");
+
+        this.cpf = cpf;
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         historicoTable = new JTable();
         scrollPane = new JScrollPane(historicoTable);
 
         setSize(400, 300);
+        setLocationRelativeTo(null);
         setVisible(true);
 
         add(scrollPane);
@@ -37,7 +42,7 @@ public class HistoricoPesoTable extends JFrame {
 
                 dispose();
 
-                new AlterarPeso(getTitle());
+                new AlterarPeso(cpf);
 
                 throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
             }
@@ -61,7 +66,7 @@ public class HistoricoPesoTable extends JFrame {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/academia","root","ju070205");
 
-            String query = "SELECT * FROM historico";
+            String query = "SELECT * FROM historico WHERE alu_cpf =" + cpf;
             try (PreparedStatement pstmt = connection.prepareStatement(query);
                  ResultSet rs = pstmt.executeQuery()) {
 

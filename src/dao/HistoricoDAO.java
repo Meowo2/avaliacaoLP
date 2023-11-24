@@ -4,12 +4,8 @@ import academia.ConnectionAcademia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-
 import javax.swing.JOptionPane;
 import model.Historico;
-import java.sql.ResultSet;
 
 
 public class HistoricoDAO {

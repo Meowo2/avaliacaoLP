@@ -1,9 +1,7 @@
 package gui;
 
 import academia.ConnectionAcademia;
-import com.mysql.cj.xdevapi.Statement;
 import dao.AlunoDAO;
-import dao.HistoricoDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -26,8 +24,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import model.Aluno;
-import model.Data;
 import model.Historico;
 
 
@@ -42,11 +38,11 @@ public class AlterarPeso extends JFrame {
     public AlterarPeso(String cpf){
         this.aluCpf = cpf;
         
-        setLocationRelativeTo(null);
         setTitle("Alterar Peso");
         setSize(400, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null); 
+        setLocationRelativeTo(null);
 
         jLabelTitle = new JLabel("Alterar Peso");
         jLabelTitle.setBounds(150, 10, 100, 30);
@@ -60,18 +56,22 @@ public class AlterarPeso extends JFrame {
         jTextNovoPeso.setBounds(90, 100, 200, 20);
         add(jTextNovoPeso);
 
-        
         bottonVoltar = new JButton("Voltar");
         bottonVoltar.setBounds(10, 10, 70, 30);
         bottonVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                
+
+                dispose();
+
+                new Login();
+
+                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
             }
+            
         });
         add(bottonVoltar);
-        
+
         buttonSavePeso = new JButton("Salvar");
         buttonSavePeso.setBounds(130, 150, 120, 30);
         buttonSavePeso.addActionListener(new ActionListener() {
@@ -115,7 +115,7 @@ public class AlterarPeso extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new HistoricoPesoTable();
+                new HistoricoPesoTable(cpf);
                 throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
 
             }

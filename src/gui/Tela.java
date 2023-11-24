@@ -16,11 +16,12 @@ public class Tela extends JFrame {
 
     public Tela() {
         
-        setLocationRelativeTo(null);
         setTitle("Registro");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        setLocationRelativeTo(null);
+
 
         labelTitle = new JLabel("Registro");
         labelTitle.setBounds(150, 10, 100, 30);
@@ -66,22 +67,9 @@ public class Tela extends JFrame {
         textFieldAltura.setBounds(120, 170, 200, 20);
         add(textFieldAltura);
 
-        buttonLogin = new JButton("Login");
-        buttonLogin.setBounds(30, 220, 120, 30);
-
-        buttonLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                new Login();
-       
-                 throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-                }
-        });
-        add(buttonLogin);
 
         buttonSubmit = new JButton("Enviar dados");
-        buttonSubmit.setBounds(200, 220, 120, 30);
+        buttonSubmit.setBounds(130, 200, 120, 30);
         buttonSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

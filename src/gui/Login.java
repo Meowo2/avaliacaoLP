@@ -19,11 +19,12 @@ public class Login extends JFrame {
     
     public Login(){
         
-        setLocationRelativeTo(null);
         setTitle("Login");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null); 
+        setLocationRelativeTo(null);
+
 
         jLabelTitle = new JLabel("Login");
         jLabelTitle.setBounds(150, 10, 100, 30);

@@ -4,18 +4,8 @@
  */
 package principal;
 
-import academia.ConnectionAcademia;
-import java.sql.Connection;
 import java.sql.SQLException;
-import model.Aluno;
-import model.Data;
-import dao.AlunoDAO;
-import gui.AlterarPeso;
 import gui.Login;
-import java.sql.PreparedStatement;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +17,6 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException{   //Teste adicionando no banco
-        // TODO code application logic here
         /*
         Connection connection = new ConnectionAcademia().getConnection();
         System.out.println("Conexão aberta!");
