@@ -19,7 +19,7 @@ public class HistoricoDAO {
     public void adicionaHistorico(Historico historico){ 
         String sql = "INSERT INTO historico(alu_cpf, his_peso, his_dataHora) VALUE(?,?,?)";
         try { 
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = connection.prepareStatement(sql); //executa instruções sql
             
             stmt.setString(1, historico.getAluCpf());
             stmt.setDouble(2, historico.getPeso());

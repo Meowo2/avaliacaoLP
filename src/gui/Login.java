@@ -47,9 +47,12 @@ public class Login extends JFrame {
         buttonLogar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               //condição de autenticação
-                AlunoDAO aluno = new AlunoDAO();
                 
+                AlunoDAO aluno = new AlunoDAO(); 
+                //instância da classe AlunoDAO armazenada na variável aluno
+                //conexão com banco
+
+                //condição de autenticação
                 if (aluno.cpfExiste(jTextCPF.getText())) {
                     dispose();
                     new AlterarPeso(jTextCPF.getText());
@@ -63,7 +66,6 @@ public class Login extends JFrame {
         buttonCadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               //condição de autenticação
                        
                 dispose();
                 new Tela();

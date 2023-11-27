@@ -91,9 +91,10 @@ public class Tela extends JFrame {
                     Double.parseDouble(textFieldAltura.getText()));
             
                     AlunoDAO add = new AlunoDAO(); 
-                    add.adicionaAluno(aluno1);
+                    add.adicionaAluno(aluno1);  //adiciona as informações do aluno ao bd
 
                     JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
+
                     dispose();
                     new Login();
             }

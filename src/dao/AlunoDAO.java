@@ -23,7 +23,7 @@ public class AlunoDAO {
     private Connection connection;
    
     public AlunoDAO(){ 
-        this.connection = new ConnectionAcademia().getConnection();
+        this.connection = new ConnectionAcademia().getConnection(); //conexao
     } 
     
     public void adicionaAluno(Aluno aluno){ 
@@ -37,7 +37,7 @@ public class AlunoDAO {
         String horaFormatada = formatterHora.format(LocalDateTime.now());   //formata hora atual
         
         try { 
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = connection.prepareStatement(sql); //executa instruções sql
             
             stmt.setString(1, aluno.getNome());
             stmt.setString(2, aluno.getCpf());
